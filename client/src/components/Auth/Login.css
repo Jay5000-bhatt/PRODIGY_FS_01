@@ -12,7 +12,6 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 
 .forms-container {
@@ -21,7 +20,6 @@ input {
   top: 0;
   left: 0;
 }
-
 
 form {
   display: flex;
@@ -34,7 +32,6 @@ form {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
 }
-
 
 .title {
   font-size: 2.2rem;

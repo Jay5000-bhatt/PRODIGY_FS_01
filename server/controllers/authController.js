@@ -13,23 +13,19 @@ const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
-    // Validate inputs
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    // Check if user exists
     let user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Create new user
     user = new User({
       name,
       email,
@@ -38,10 +34,8 @@ const registerUser = async (req, res) => {
 
     await user.save();
 
-    // Generate token
     const token = generateToken(user._id);
 
-    // Return response
     res.status(201).json({
       _id: user._id,
       name: user.name,
@@ -58,23 +52,19 @@ const authUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Check if user exists
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: "Invalid User" });
     }
 
-    // Validate password
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid password" });
     }
 
-    // Generate token
     const token = generateToken(user._id);
 
-    // Return response
     res.json({
       _id: user._id,
       name: user.name,

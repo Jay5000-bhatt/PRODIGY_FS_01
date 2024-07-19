@@ -9,8 +9,6 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  // const history = useHistory();
-
   const submitHandler = async (e) => {
     e.preventDefault();
     const config = {
@@ -24,12 +22,11 @@ const Register = () => {
         { name, email, password },
         config
       );
-      console.log("Response data:", response.data); // Log response data
+      console.log("Response data:", response.data);
 
-      // Redirect to profile page after successful registration
       navigate("/login");
     } catch (error) {
-      console.error("Error response:", error.response); // Log error response
+      console.error("Error response:", error.response);
       if (error.response && error.response.data) {
         console.error("Error message:", error.response.data.message);
       } else {

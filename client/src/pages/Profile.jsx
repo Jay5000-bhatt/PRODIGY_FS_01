@@ -13,7 +13,10 @@ const Profile = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get("http://localhost:5000/api/auth/profile", config);
+      const { data } = await axios.get(
+        "http://localhost:5000/api/auth/profile",
+        config
+      );
       setProfile(data);
     };
 
@@ -25,8 +28,6 @@ const Profile = () => {
   const handleLogout = () => {
     logout();
   };
-
-  
 
   return (
     <div>
