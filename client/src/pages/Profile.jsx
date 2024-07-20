@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
+import './Profile.css';
 
 const Profile = () => {
   const [profile, setProfile] = useState({});
@@ -30,12 +31,14 @@ const Profile = () => {
   };
 
   return (
-    <div>
-      <h1>Profile</h1>
-      <p>Name: {profile.name}</p>
-      <p>Email: {profile.email}</p>
-      <p>Role: {profile.role}</p>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="profile-container">
+      <div className="profile-card">
+        <h1>Profile</h1>
+        <p>Name: {profile.name}</p>
+        <p>Email: {profile.email}</p>
+        <p>Role: {profile.role}</p>
+        <button onClick={handleLogout}>Logout</button>
+      </div>
     </div>
   );
 };
